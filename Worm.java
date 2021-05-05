@@ -29,8 +29,8 @@ public class Worm {
     public Worm(String name) {
         wormName = name;
 
-        Head[0] = (Integer)randomGenerator2.nextInt(250);
-        Head[1] = (Integer)randomGenerator2.nextInt(250);
+        Head[0] = (Integer)randomGenerator1.nextInt(Board.playSize[0] / 2 + 1) + Board.playSize[0] / 4;
+        Head[1] = (Integer)randomGenerator2.nextInt(Board.playSize[1] / 2 + 1) + Board.playCor[1] + Board.playSize[1] / 4;
         Head[2] = "none";
         
         wormSegments.add(Head);
@@ -132,6 +132,14 @@ public class Worm {
         return wormSegments.size();
     }
 
+    public String getLength(String anyString) {
+        return String.valueOf(getLength());
+    }
+
+    public String getName() {
+        return wormName;
+    }
+
     public void checkSelfCollision() {
         boolean collided = false;
         for (Object[] segment: wormSegments) {
@@ -146,7 +154,8 @@ public class Worm {
     }
 
     public void checkEdgeCollision() {
-        if (this.getXHead() <= 0 || this.getXHead() >= 550 || this.getYHead() <= 0 || this.getYHead() >= 550)
+        if (this.getXHead() <= Board.playCor[0] || this.getXHead() >= (Board.playCor[0] + Board.playSize[0]) || 
+            this.getYHead() <= Board.playCor[1] || this.getYHead() >= (Board.playCor[1] + Board.playSize[1]))
             Alive = false;
     }
 

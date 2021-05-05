@@ -8,18 +8,19 @@
 import java.util.*;
 
 public class Food {
-
   int[] foodPosition = new int[2];
 
-  boolean set = false;
+  boolean set;
+
+  Random randomGenerator1 = new Random();
+  Random randomGenerator2 = new Random();
 
   public Food() {
-    Random randomGenerator1 = new Random();
-    Random randomGenerator2 = new Random();
+    set = false;
 
     if(!set) {
-      foodPosition[0] = randomGenerator1.nextInt(500);
-      foodPosition[1] = randomGenerator2.nextInt(500);
+      foodPosition[0] = randomGenerator1.nextInt(3 * Board.playSize[0] / 4) + Board.playSize[0] / 8;
+      foodPosition[1] = randomGenerator2.nextInt(3 * Board.playSize[1] / 4) + Board.playCor[1] + Board.playSize[1] / 8;
       set = true;
       }
     }
