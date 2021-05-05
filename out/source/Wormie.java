@@ -90,6 +90,11 @@ public void keyPressed() {
 	}
 }
 
+public void mousePressed() {
+	testWorm.addOne();
+}
+
+
 public void settings() {
 	size(Board.playSize[0], Board.playSize[1] + Board.scoreSize[1]);
 }
@@ -121,13 +126,13 @@ public void draw() {
 
 	drawWorm(testWorm);
 	testWorm.moveOne();
+	testWorm.checkSelfCollision();
+	testWorm.checkEdgeCollision();
 
 	int foodXCor = testFood.getXFood();
 	int foodYCor = testFood.getYFood();
 
-	testWorm.checkEdgeCollision();
 
-	testWorm.checkSelfCollision();
 
 	if (testWorm.headCollision(foodXCor, foodYCor)) {
 		testWorm.addOne();

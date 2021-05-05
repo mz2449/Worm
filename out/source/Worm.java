@@ -142,14 +142,18 @@ public class Worm {
 
     public void checkSelfCollision() {
         boolean collided = false;
+        System.out.println("head x, y " + getXHead() + ", " + getYHead());
         for (Object[] segment: wormSegments) {
             if (wormSegments.indexOf(segment) == 0 || wormSegments.indexOf(segment) == 1) {
                 continue;
             }
+
             collided = headCollision((int)segment[0], (int)segment[1]);
-        }
-        if (collided) {
-            Alive = false;
+            
+            if (collided) {
+                Alive = false;
+                break;
+            }
         }
     }
 
@@ -160,7 +164,10 @@ public class Worm {
     }
 
     public boolean headCollision(int xCor, int yCor) {
-        if (this.getXHead() > xCor - 10 && this.getXHead() < xCor + 10 && this.getYHead() > yCor - 10 && this.getYHead() < yCor + 10) {
+        if (getXHead() == xCor && getYHead() == yCor) {
+            return true;
+        }
+        else if (getXHead() > xCor - 10 && getXHead() < xCor + 10 && getYHead() > yCor - 10 && getYHead() < yCor + 10) {
             return true;
         }
         else {

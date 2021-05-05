@@ -105,13 +105,13 @@ public void draw() {
 
 	drawWorm(testWorm);
 	testWorm.moveOne();
+	testWorm.checkSelfCollision();
+	testWorm.checkEdgeCollision();
 
 	int foodXCor = testFood.getXFood();
 	int foodYCor = testFood.getYFood();
 
-	testWorm.checkEdgeCollision();
 
-	testWorm.checkSelfCollision();
 
 	if (testWorm.headCollision(foodXCor, foodYCor)) {
 		testWorm.addOne();
