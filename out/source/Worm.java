@@ -31,8 +31,8 @@ public class Worm {
 
         Head[0] = (Integer)randomGenerator2.nextInt(250);
         Head[1] = (Integer)randomGenerator2.nextInt(250);
-        Head[2] = "up";
-
+        Head[2] = "none";
+        
         wormSegments.add(Head);
 
         Alive = true;
