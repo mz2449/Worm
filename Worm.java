@@ -138,7 +138,7 @@ public class Worm {
     }
 
     public boolean headCollision(int xCor, int yCor) {
-        if (this.getXHead() > xCor - 5 && this.getXHead() < xCor + 5 && this.getYHead() > yCor - 5 && this.getYHead() < yCor + 5) {
+        if (this.getXHead() > xCor - 10 && this.getXHead() < xCor + 10 && this.getYHead() > yCor - 10 && this.getYHead() < yCor + 10) {
             return true;
         }
         else {

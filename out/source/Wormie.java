@@ -16,12 +16,22 @@ public class Wormie extends PApplet {
 
 Worm testWorm = new Worm("Test Worm");
 
+Food testFood = new Food();
+
 public void drawWorm(Worm curWorm) {
 	background(102, 51, 0);
 	for (Object[] segment: curWorm.wormSegments) {
 		rectMode(CENTER);
 		rect((int)segment[0], (int)segment[1], 10, 10);
 	}
+}
+
+public void drawFood(){
+	stroke(255,255,255);
+  	fill(0,0,255);
+  	circle(testFood.getXFood(), testFood.getYFood(), 10);
+ 	fill(219,112,147);
+	stroke(219,112,147);
 }
 
 public void mousePressed() {
@@ -60,6 +70,20 @@ public void setup() {
 public void draw() {
 	drawWorm(testWorm);
 	testWorm.moveOne();
+	int foodXCor = testFood.getXFood();
+	int foodYCor = testFood.getYFood();
+
+	if (testFood.set) {
+		drawFood();
+	}
+	else {
+		testFood = new Food();
+	}
+
+	if (testWorm.headCollision(foodXCor, foodYCor)) {
+		testWorm.addOne();
+		testFood.eat();
+	}
 
 	testWorm.checkEdgeCollision();
 
