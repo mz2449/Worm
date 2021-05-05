@@ -34,9 +34,6 @@ public void drawFood(){
 	stroke(219,112,147);
 }
 
-public void mousePressed() {
-	testWorm.addOne();
-}
 
 public void keyPressed() {
 	if (key == 'w' || key == 'W') {
@@ -54,10 +51,11 @@ public void keyPressed() {
 	if (key == 'd' || key == 'D') {
 		testWorm.changeDirection("right");
 	}
+	loop();
 }
 
 public void settings() {
-	size(750,750);
+	size(500,500);
 }
 	
 public void setup() {
@@ -65,6 +63,7 @@ public void setup() {
 	frameRate(15);
 	fill(219,112,147);
 	stroke(219,112,147);
+	noLoop();
 }
 
 public void draw() {
@@ -72,6 +71,10 @@ public void draw() {
 	testWorm.moveOne();
 	int foodXCor = testFood.getXFood();
 	int foodYCor = testFood.getYFood();
+
+	testWorm.checkEdgeCollision();
+
+	testWorm.checkSelfCollision();
 
 	if (testFood.set) {
 		drawFood();
@@ -85,10 +88,12 @@ public void draw() {
 		testFood.eat();
 	}
 
-	testWorm.checkEdgeCollision();
+
 
 	if (! testWorm.Alive) {
 		background(0,0,0);
+		testFood.eat();
+		noLoop();
 	}
 
 }

@@ -132,13 +132,26 @@ public class Worm {
         return wormSegments.size();
     }
 
+    public void checkSelfCollision() {
+        boolean collided = false;
+        for (Object[] segment: wormSegments) {
+            if (wormSegments.indexOf(segment) == 0 || wormSegments.indexOf(segment) == 1) {
+                continue;
+            }
+            collided = headCollision((int)segment[0], (int)segment[1]);
+        }
+        if (collided) {
+            Alive = false;
+        }
+    }
+
     public void checkEdgeCollision() {
-        if (this.getXHead() <= 0 || this.getXHead() >= 750 || this.getYHead() <= 0 || this.getYHead() >= 750)
+        if (this.getXHead() <= 0 || this.getXHead() >= 550 || this.getYHead() <= 0 || this.getYHead() >= 550)
             Alive = false;
     }
 
     public boolean headCollision(int xCor, int yCor) {
-        if (this.getXHead() > xCor - 5 && this.getXHead() < xCor + 5 && this.getYHead() > yCor - 5 && this.getYHead() < yCor + 5) {
+        if (this.getXHead() > xCor - 10 && this.getXHead() < xCor + 10 && this.getYHead() > yCor - 10 && this.getYHead() < yCor + 10) {
             return true;
         }
         else {
