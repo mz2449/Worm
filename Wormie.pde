@@ -72,8 +72,6 @@ public void draw() {
 		testFood.eat();
 	}
 
-
-
 	if (! testWorm.Alive) {
 		background(0,0,0);
 		testFood.eat();
