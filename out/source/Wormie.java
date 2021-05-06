@@ -90,11 +90,6 @@ public void keyPressed() {
 	}
 }
 
-public void mousePressed() {
-	testWorm.addOne();
-}
-
-
 public void settings() {
 	size(Board.playSize[0], Board.playSize[1] + Board.scoreSize[1]);
 }

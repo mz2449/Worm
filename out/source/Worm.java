@@ -142,7 +142,7 @@ public class Worm {
 
     public void checkSelfCollision() {
         boolean collided = false;
-        System.out.println("head x, y " + getXHead() + ", " + getYHead());
+
         for (Object[] segment: wormSegments) {
             if (wormSegments.indexOf(segment) == 0 || wormSegments.indexOf(segment) == 1) {
                 continue;
