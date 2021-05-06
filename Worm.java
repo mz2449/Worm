@@ -9,7 +9,7 @@ import java.util.*;
 
 public class Worm {
     // ArrayList of all Worm objects
-    static ArrayList<Worm> wormList;
+    static ArrayList<Worm> wormList = new ArrayList<>();
 
     // Random number generators for later use
     Random randomGenerator1 = new Random();
@@ -22,11 +22,13 @@ public class Worm {
     ArrayList<Object[]> wormSegments = new ArrayList<>(); // ArrayList of every single segment of the worm
     public Boolean Alive;
 
-    public Worm() {
+    public Worm() { 
         this("Wormie " + (wormList.size() + 1));
-    }
+        }
 
     public Worm(String name) {
+        wormList.add(this);
+
         wormName = name;
 
         Head[0] = (Integer)randomGenerator1.nextInt(Board.playSize[0] / 2 + 1) + Board.playSize[0] / 4;

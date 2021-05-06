@@ -1,9 +1,9 @@
 PFont f;  
 PFont title; 
 
-Worm testWorm = new Worm("Test Worm");
+Worm wormOne = new Worm();
 
-Food testFood = new Food();
+Food foodOne = new Food();
 
 public void drawWorm(Worm curWorm) {
 	fill(219,112,147);
@@ -41,35 +41,35 @@ public void drawBoard() {
   	fill(0);                         // Specify font color 
   	//Get inputs: worm name and length
   	text("Name:", 10, 120);            //(word, x_cord,y_cord)
- 	text(testWorm.getName(), 65, 120); // STEP 5 Display Text
+ 	text(wormOne.getName(), 65, 120); // STEP 5 Display Text
  	text("Score:", 350, 120); 
- 	text(testWorm.getLength("String"), 400, 120); 
+ 	text(wormOne.getLength("String"), 400, 120); 
 }
 
 public void drawFood() {
 	stroke(255, 255, 255);
   	fill(0, 0, 255);
-  	circle(testFood.getXFood(), testFood.getYFood(), 10);
+  	circle(foodOne.getXFood(), foodOne.getYFood(), 10);
 }
 
 public void keyPressed() {
 	if (key == 'w' || key == 'W') {
-		testWorm.changeDirection("up");
+		wormOne.changeDirection("up");
 	}
 
 	if (key == 'a' || key == 'A') {
-		testWorm.changeDirection("left");
+		wormOne.changeDirection("left");
 	}
 
 	if (key == 's' || key == 'S') {
-		testWorm.changeDirection("down");
+		wormOne.changeDirection("down");
 	}
 
 	if (key == 'd' || key == 'D') {
-		testWorm.changeDirection("right");
+		wormOne.changeDirection("right");
 	}
 
-	if (testWorm.Alive) {
+	if (wormOne.Alive) {
 		loop();
 	}
 }
@@ -90,32 +90,32 @@ public void setup() {
 
 // DRAW FUNCTION
 public void draw() {
-	if (! testWorm.Alive) {
+	if (! wormOne.Alive) {
 		noLoop();
 	}
 
 	drawBoard();
 
-	if (testFood.set) {
+	if (foodOne.set) {
 		drawFood();
 	}
 	else {
-		testFood = new Food();
+		foodOne = new Food();
 	}
 
-	drawWorm(testWorm);
-	testWorm.moveOne();
-	testWorm.checkSelfCollision();
-	testWorm.checkEdgeCollision();
+	drawWorm(wormOne);
+	wormOne.moveOne();
+	wormOne.checkSelfCollision();
+	wormOne.checkEdgeCollision();
 
-	int foodXCor = testFood.getXFood();
-	int foodYCor = testFood.getYFood();
+	int foodXCor = foodOne.getXFood();
+	int foodYCor = foodOne.getYFood();
 
 
 
-	if (testWorm.headCollision(foodXCor, foodYCor)) {
-		testWorm.addOne();
-		testFood.eat();
+	if (wormOne.headCollision(foodXCor, foodYCor)) {
+		wormOne.addOne();
+		foodOne.eat();
 	}
 
 }
