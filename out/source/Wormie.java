@@ -14,10 +14,11 @@ import java.io.IOException;
 
 public class Wormie extends PApplet {
 
-PFont f;  
+PFont score;  
 PFont title; 
+PFont gameEnd;
 
-Worm wormOne = new Worm();
+Worm wormOne = new Worm("Wormie");
 
 Food foodOne = new Food();
 
@@ -53,7 +54,7 @@ public void drawBoard() {
  	text("Wormie", 195, 30); 
 
 	//Display's user content
-  	textFont(f, 16);                  // Specify font to be used
+  	textFont(score, 16);                  // Specify font to be used
   	fill(0);                         // Specify font color 
   	//Get inputs: worm name and length
   	text("Name:", 10, 120);            //(word, x_cord,y_cord)
@@ -90,6 +91,22 @@ public void keyPressed() {
 	}
 }
 
+public void endGame() {
+	background(0);
+	textFont(gameEnd, 55);                  
+ 	fill(255, 0, 0);                         
+ 	text("Game Over!", 115, 300);
+		 
+    //Displays end score
+	textFont(score, 20);                  
+  	fill(255,0,0); 
+	text(wormOne.getName() + "'s" + " Score:  ", 150, 325); 
+ 	text(wormOne.getLength("String"), 330, 325); 
+	
+	noLoop();
+
+}
+
 public void settings() {
 	size(Board.playSize[0], Board.playSize[1] + Board.scoreSize[1]);
 }
@@ -98,17 +115,16 @@ public void setup() {
 	Board.drawGrass();
 	frameRate(15);
 
-  	title = createFont("Arial",16,true);
-  	f = createFont("Arial",16,true); //chooses font 
+  	title = createFont("ComicSansMS",16,true);
+  	score = createFont("ComicSansMS",16,true); //chooses font 
+	//FONT FOR GAME OVER
+	gameEnd = createFont("ComicSansMS", 16, true);
 
 	noLoop();
 }
 
 // DRAW FUNCTION
 public void draw() {
-	if (! wormOne.Alive) {
-		noLoop();
-	}
 
 	drawBoard();
 
@@ -132,6 +148,10 @@ public void draw() {
 	if (wormOne.headCollision(foodXCor, foodYCor)) {
 		wormOne.addOne();
 		foodOne.eat();
+	}
+
+	if (! wormOne.Alive) {
+		endGame();
 	}
 
 }
