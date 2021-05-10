@@ -1,6 +1,12 @@
+import processing.sound.*;
 PFont score;  
 PFont title; 
 PFont gameEnd;
+
+
+SoundFile music;
+String audioName = "GameMusic.mp3";
+String path;
 
 Worm wormOne = new Worm("Wormie");
 
@@ -104,6 +110,10 @@ public void setup() {
 	//FONT FOR GAME OVER
 	gameEnd = createFont("ComicSansMS", 16, true);
 
+	path = sketchPath(audioName);
+	music = new SoundFile(this, path);
+	music.loop();
+
 	noLoop();
 }
 
@@ -135,6 +145,7 @@ public void draw() {
 	}
 
 	if (! wormOne.Alive) {
+		music.stop();
 		endGame();
 	}
 

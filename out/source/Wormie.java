@@ -3,6 +3,8 @@ import processing.data.*;
 import processing.event.*; 
 import processing.opengl.*; 
 
+import processing.sound.*; 
+
 import java.util.HashMap; 
 import java.util.ArrayList; 
 import java.io.File; 
@@ -14,9 +16,15 @@ import java.io.IOException;
 
 public class Wormie extends PApplet {
 
+
 PFont score;  
 PFont title; 
 PFont gameEnd;
+
+
+SoundFile music;
+String audioName = "GameMusic.mp3";
+String path;
 
 Worm wormOne = new Worm("Wormie");
 
@@ -120,6 +128,10 @@ public void setup() {
 	//FONT FOR GAME OVER
 	gameEnd = createFont("ComicSansMS", 16, true);
 
+	path = sketchPath(audioName);
+	music = new SoundFile(this, path);
+	music.loop();
+
 	noLoop();
 }
 
@@ -151,6 +163,7 @@ public void draw() {
 	}
 
 	if (! wormOne.Alive) {
+		music.stop();
 		endGame();
 	}
 
